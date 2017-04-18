@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :projects
-  root 'dashboard#home'
+  
+  root 'projects#index'
 end
