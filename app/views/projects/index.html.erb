@@ -2,18 +2,19 @@
 
 <section class="section">
   <header>
-    <h1>Missing configuration</h1>
+    <h1>
+      Missing configuration
+    </h1>
   </header>
 
-  <ul class="collapsible projects-list" data-collapsible="expandable">
+  <ul class="collection projects-list" data-collapsible="expandable">
     <% @projects.each do |project| %>
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">settings</i>
+      <li class="collection-item">
+        <div class="collection-item__body">
+          <i class="material-icons material-icons--error">report_problem</i>
           <%= project.name %>
           <%= link_to 'ADD CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
         </div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
       </li>
     <% end %>
   </ul>
@@ -33,7 +34,14 @@
           <%= project.name %>
           <%= link_to 'EDIT CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
         </div>
-        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        <div class="collapsible-body">
+          <ul class="collection with-header">
+            <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
+            <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
+            <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
+            <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
+          </ul>
+        </div>
       </li>
     <% end %>
   </ul>

@@ -4,6 +4,7 @@
     <title>BackupsDashboard</title>
     <%= csrf_meta_tags %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,8 +12,22 @@
 
   <body>
     <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <ul class="right hide-on-med-and-down">
+          <li><a>A link</a></li>
+          <li><a>A second link</a></li>
+          <li><a>A third link</a></li>
+        </ul>
+      </div>
       <div class="nav-content valign-wrapper">
-        <h1 class="center-align">BluesQuare backup dashboard</h1>
+        <div>
+          <div class="center-align  animated fadeInUp flipInX">
+            <i class="large material-icons">backup</i>
+          </div>
+          <h1 class="center-align  animated fadeInUp">
+            BluesQuare backup dashboard
+          </h1>
+        </div>
         <%= link_to new_project_path, class: 'btn-floating btn-large halfway-fab waves-effect waves-light red' do %>
           <i class="material-icons">add</i>
         <% end %>
