@@ -22,6 +22,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :db_connector %>
+    <%=  f.collection_select :db_connector, Project.db_connectors.map{ |a| [a.first,a.first] },  :first, :second %>
+  </div>
+
+  <div class="field">
     <%= f.label :domain %>
     <%= f.text_field :domain %>
   </div>
