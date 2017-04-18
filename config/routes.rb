@@ -1,5 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  if ENV['ADMIN_PASSWORD']
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      username == 'admin' && password == ENV['ADMIN_PASSWORD']
+    end
+  end
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :projects
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'dashboard#home'
 end
