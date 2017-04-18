@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <div class="input-field">
     <%= f.text_field :name %>
+    <%= f.label :name, class: 'active' %>
   </div>
 
-  <div class="field">
-    <%= f.label :region %>
+  <div class="input-field">
     <%= f.text_field :region %>
+    <%= f.label :region, class: 'active' %>
   </div>
 
-  <div class="field">
-    <%= f.label :db_connector %>
+  <div class="input-field">
     <%=  f.collection_select :db_connector, Project.db_connectors.map{ |a| [a.first,a.first] },  :first, :second %>
+    <%= f.label :db_connector %>
   </div>
 
-  <div class="field">
-    <%= f.label :domain %>
+  <div class="input-field">
+    <%= f.label :domain, class: 'active' %>
     <%= f.text_field :domain %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn waves-effect waves-light' %>
   </div>
 <% end %>

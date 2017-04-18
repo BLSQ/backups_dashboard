@@ -1,4 +1,32 @@
 @import "materialize/components/color";
 $primary-color: color("blue", "darken-2") !default;
-$secondary-color: color("red", "darken-3") !default;
+$secondary-color: color("blue", "base") !default;
 @import 'materialize';
+
+.nav-content {
+  min-height: 250px;
+  justify-content: center;
+
+  h1 {
+    font-size: 2.5em;
+  }
+}
+
+.section {
+  header h1 {
+    font-size: 24px;
+    margin-bottom: 1.5em;
+  }
+}
+
+.projects-list__item__action {
+  float: right;
+}
+
+.material-icons--success {
+  color: green;
+}
+
+.material-icons--error {
+  color: red;
+}

@@ -1,16 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Applications backups</h3>
+<section class="section">
+  <header>
+    <h1>Missing configuration</h1>
+  </header>
 
-<ul class="collapsible" data-collapsible="accordion">
-  <% @projects.each do |project| %>
-    <li>
-      <div class="collapsible-header">
-        <i class="material-icons ">done</i>
-        <%= project.name %>
-        <%= link_to 'EDIT CONFIG', edit_project_path(project) %>
-      </div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  <% end %>
-</ul>
+  <ul class="collapsible projects-list" data-collapsible="expandable">
+    <% @projects.each do |project| %>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">settings</i>
+          <%= project.name %>
+          <%= link_to 'ADD CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
+        </div>
+        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      </li>
+    <% end %>
+  </ul>
+
+</section>
+
+<section class="section">
+  <header>
+    <h1>Applications backups</h1>
+  </header>
+
+  <ul class="collapsible projects-list" data-collapsible="expandable">
+    <% @projects.each do |project| %>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons material-icons--success">done</i>
+          <%= project.name %>
+          <%= link_to 'EDIT CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
+        </div>
+        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      </li>
+    <% end %>
+  </ul>
+
+</section>
