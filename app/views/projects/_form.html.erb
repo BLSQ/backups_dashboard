@@ -1,4 +1,4 @@
-<% unless !@project.postgresql? && @project.autobus_token.present? %>
+<% if !@project.postgresql? && @project.autobus_token.blank? %>
   <div class="autobus-instructions">
       <h5 class="autobus-instructions__header">To configure this project, follow these steps:</h5>
       <ul class="collection">
