@@ -8,12 +8,7 @@
         <%= link_to 'EDIT CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
       </div>
       <div class="collapsible-body">
-        <ul class="collection with-header">
-          <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
-          <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
-          <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
-          <li class="collection-item"><div>Alvin<a href="#!" class="secondary-content"><i class="material-icons"></i>LOG</a></div></li>
-        </ul>
+        <%= render 'backups/backups_list', locals: {backups: project.backups} %>
       </div>
     </li>
   <% end %>

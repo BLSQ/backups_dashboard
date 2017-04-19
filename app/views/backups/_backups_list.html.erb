@@ -1,0 +1,14 @@
+<ul class="collection with-header">
+  <% locals[:backups].each do |backup| %>
+    <li class="collection-item">
+      <div class="collection-item__body">
+        <i class="material-icons material-icons--success">done</i>
+        <%= backup_line_item(backup).html_safe %>
+        <a href="#!" class="secondary-content">
+          <i class="material-icons"></i>
+          LOG
+        </a>
+      </div>
+    </li>
+  <% end %>
+</ul>

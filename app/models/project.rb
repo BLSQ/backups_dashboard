@@ -3,7 +3,11 @@ class Project < ApplicationRecord
   has_many :backups
 
   scope :missing_config, -> { where.not(db_connector: [Project.db_connectors[:postgresql]]).where(autobus_token: '') }
-  scope :configured, -> { where.not(autobus_token: '') }
+  scope :with_autobus_config, -> { where.not(autobus_token: nil) }
+
+  def self.configured
+    postgresql + with_autobus_config
+  end
 
   def configured?
     postgresql? ? true : autobus_token?
