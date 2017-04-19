@@ -36,13 +36,18 @@ body > .container {
   }
 }
 
+code {
+  display: block;
+  white-space: pre-wrap
+}
+
 section {
   margin: 4em 0;
 
   &:first-of-type {
     margin-top: 0;
   }
-  
+
   header h1 {
     font-size: 24px;
     margin-bottom: 1.5em;
@@ -60,4 +65,12 @@ section {
 
 .material-icons--error {
   color: red;
+}
+
+.autobus-instructions {
+  margin-bottom: 4em;
+}
+
+.autobus-instructions__header {
+  margin-bottom: 1em;
 }

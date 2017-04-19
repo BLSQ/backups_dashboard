@@ -1,5 +1,28 @@
 <% unless project.postgresql? %>
-  postgresql is it not
+  <div class="autobus-instructions">
+      <h5 class="autobus-instructions__header">To configure this project, follow these steps:</h5>
+      <ul class="collection">
+        <li class="collection-item">
+          <code>
+            heroku browse --app <%= @project.name %>;
+            heroku addons:add autobus --app <%= @project.name %>;
+            heroku addons:upgrade autobus:journey --app <%= @project.name %>;
+            heroku addons:open autobus --app <%= @project.name %>;
+          </code>
+        </li>
+        <% [
+         'Change hour',
+         'Enable rest api',
+         'Save',
+         'Trigger a manual backup',
+         'Add the auth token in the present form and save'
+        ].each do |item| %>
+          <li class="collection-item">
+            <%= item %>
+          </li>
+        <% end %>
+      </ul>
+  </div>
 <% end %>
 
 <%= form_for(project) do |f| %>
