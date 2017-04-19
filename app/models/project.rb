@@ -6,7 +6,7 @@ class Project < ApplicationRecord
   scope :with_autobus_config, -> { where.not(autobus_token: nil) }
 
   def self.configured
-    postgresql + with_autobus_config
+    (postgresql + with_autobus_config).uniq
   end
 
   def configured?
