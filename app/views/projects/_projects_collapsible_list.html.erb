@@ -4,7 +4,7 @@
       <div class="collapsible-header">
         <i class="material-icons material-icons--success">done</i>
         <%= db_icon(project.db_connector) %>
-        <%= project.name %> — <%= project.db_connector %> — <%=  project.configured? ? 'yes' : 'no'%>
+        <%= project_line_item(project).html_safe %>
         <%= link_to 'EDIT CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
       </div>
       <div class="collapsible-body">

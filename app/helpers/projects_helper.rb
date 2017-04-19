@@ -9,4 +9,11 @@ module ProjectsHelper
 
     image_tag path, width: 16, class: 'db-icon'
   end
+
+  def project_line_item(project)
+    line = [project.name]
+    line << content_tag(:span, CGI::escapeHTML(project.region), class: 'muted') unless project.region.blank?
+    line << content_tag(:span, CGI::escapeHTML(project.domain), class: 'muted') unless project.domain.blank?
+    line.join(' — ')
+  end
 end
