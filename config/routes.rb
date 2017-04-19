@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :backups
   if ENV['ADMIN_PASSWORD']
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       username == 'admin' && password == ENV['ADMIN_PASSWORD']
