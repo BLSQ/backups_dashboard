@@ -1,3 +1,7 @@
+<% unless project.postgresql? %>
+  postgresql is it not
+<% end %>
+
 <%= form_for(project) do |f| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
@@ -21,14 +25,21 @@
     <%= f.label :region, class: 'active' %>
   </div>
 
-  <div class="input-field">
-    <%=  f.collection_select :db_connector, Project.db_connectors.map{ |a| [a.first,a.first] },  :first, :second %>
-    <%= f.label :db_connector %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%=  f.collection_select :db_connector, Project.db_connectors.map{ |a| [a.first,a.first] },  :first, :second %>
+      <%= f.label :db_connector %>
+    </div>
   </div>
 
   <div class="input-field">
     <%= f.label :domain, class: 'active' %>
     <%= f.text_field :domain %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :autobus_token %>
+    <%= f.text_field :autobus_token %>
   </div>
 
   <div class="actions">
