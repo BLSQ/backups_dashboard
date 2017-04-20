@@ -55,6 +55,13 @@ section {
   }
 }
 
+.projects-list .db-icon {
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+  opacity: .5;
+}
+
 .projects-list__item__action {
   float: right;
 }
@@ -73,4 +80,8 @@ section {
 
 .autobus-instructions__header {
   margin-bottom: 1em;
+}
+
+.muted {
+  opacity: .7;  
 }
