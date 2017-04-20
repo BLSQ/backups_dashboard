@@ -7,9 +7,14 @@ class ProjectService
   def configure_apps
     heroku = PlatformAPI.connect_oauth(ENV['HEROKU_TOOLBELT_API_PASSWORD'])
     heroku.app.list.each do |app|
-      project = Project.find_or_create_by(name: app['name'])
-      update_project(project, app)
-      configure(project)
+      begin
+        project = Project.find_or_create_by(name: app['name'])
+        update_project(project, app)
+        configure(project)
+        update_backups(project)
+      rescue => e 
+        puts "error while configuring #{app['name']} : #{e.message} #{e.backtrace.join('\n')}"
+      end 
     end
   end
 

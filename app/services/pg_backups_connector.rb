@@ -23,7 +23,9 @@ class PGBackupsConnector
 
   def backups(project)
     result = @cli.execute "#{HEROKU_CMD} --app #{project.name}"
-    result.split('=== ').second.split("\n")[3..-1].map do |line| 
+    backups = result.split('=== ').second.split("\n")[3..-1]
+    return [] if  backups.nil?
+    backups.map do |line| 
       Hash[['id','created_at','status','size','database'].zip(line.split('  '))]
     end 
   end 
