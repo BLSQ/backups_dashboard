@@ -48,7 +48,6 @@ describe PGBackupsConnector do
   end 
 
   it "should return list of backups" do 
-
     expected_backups =  [
           {"id"=>"a165",
            "created_at"=>"2017-04-19 05:29:37 +0000",
@@ -75,6 +74,4 @@ describe PGBackupsConnector do
     pg_backups = PGBackupsConnector.new mock_heroku_cli
     expect(pg_backups.backups(project)).to eq(expected_backups) 
   end 
-
-
 end 

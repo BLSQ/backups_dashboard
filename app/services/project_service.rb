@@ -43,4 +43,13 @@ class ProjectService
     project.update_attributes(frequency: @pg_backups.scheduled_at(project))
   end
 
+  def update_backups(project)
+      heroku_backups = @pg_backups.backups(project)
+      heroku_backups.each do |heroku_backup|
+        backup = project.backups.find_or_create_by(internal_id: heroku_backup['id']) 
+        backup.update_attributes({size: heroku_backup['size'],
+                                  status: heroku_backup['status']})
+      end 
+  end 
+
 end
