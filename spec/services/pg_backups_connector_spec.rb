@@ -31,9 +31,17 @@ describe PGBackupsConnector do
   end 
 
   it "schedule date for a specific app" do
-    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at '07:00 Europe/Brussels' --app #{project.name}" => "pgbackups_schedule.txt"})
+    date = '07:00 Europe/Brussels'
+    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at #{date} --app #{project.name}" => "pgbackups_schedule.txt"})
     pg_backups = PGBackupsConnector.new mock_heroku_cli
-    expect(pg_backups.scheduled?(project)).to eq(false)
+    expect{pg_backups.schedule(project,date)}.to_not raise_error(RuntimeError) 
+  end 
+
+  it "schedule raise error if schedule doesn't work" do
+    date = '07:00 Europe/Brussels'
+    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at #{date} --app #{project.name}" => "pgbackups_schedule_error.txt"})
+    pg_backups = PGBackupsConnector.new mock_heroku_cli
+    expect{pg_backups.schedule(project,date)}.to raise_error(RuntimeError) 
   end 
 
 end 
