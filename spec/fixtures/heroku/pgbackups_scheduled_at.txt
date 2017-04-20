@@ -1,0 +1,2 @@
+=== Backup Schedules
+DATABASE_URL: daily at 7:00 Europe/Brussels

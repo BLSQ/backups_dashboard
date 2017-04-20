@@ -6,6 +6,6 @@ class Project < ApplicationRecord
   scope :configured, -> { where.not(autobus_token: nil) }
 
   def configured?
-    postgresql? ? true : autobus_token?
+    postgresql? ? frequency? : autobus_token? && frequency? 
   end
 end

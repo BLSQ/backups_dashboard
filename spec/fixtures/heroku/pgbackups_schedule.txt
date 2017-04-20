@@ -1,0 +1,1 @@
+Scheduling automatic daily backups of [33mpostgresql-octagonal-59499[39m at [36m07:00 Europe/Brussels[39m... done

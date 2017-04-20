@@ -1,0 +1,1 @@
+ [31m▸[39m    Invalid schedule format: expected --at '[HOUR]:00 [TIMEZONE]'

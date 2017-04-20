@@ -1,7 +1,7 @@
 class ProjectsUpdateWorker 
   include Sidekiq::Worker
 
-  def perform()
+  def perform
     #project_service = ProjectService.new 
     #applications = project_service.retrieve_heroku_applications
 
