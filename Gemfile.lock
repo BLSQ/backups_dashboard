@@ -63,6 +63,7 @@ GEM
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.20170404)
@@ -74,6 +75,11 @@ GEM
     eventmachine (1.2.0.1)
     excon (0.55.0)
     execjs (2.7.0)
+    factory_girl (4.0.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.0.0)
+      factory_girl (~> 4.0.0)
+      railties (>= 3.0.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -300,6 +306,8 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.2)
+  database_cleaner
+  factory_girl_rails
   figaro
   guard-livereload (~> 2.5)
   jbuilder (~> 2.5)

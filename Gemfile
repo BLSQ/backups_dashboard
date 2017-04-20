@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'coffee-rails', '~> 4.2'
 gem 'figaro'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -14,11 +15,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'sidekiq', '~> 4.2.9'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -32,6 +33,8 @@ end
 group :test do
   gem 'capybara'
   gem 'rspec'
+  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 3.0'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'

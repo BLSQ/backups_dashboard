@@ -6,7 +6,7 @@
       </h1>
     </header>
 
-    <%= render 'projects_list', locals: { projects: @missing_config_projects} %>
+    <%= render 'projects_list', locals: { projects: @missing_config_projects, classes: 'projects-list--missing-config' } %>
 
   </section>
 <% end %>
@@ -17,6 +17,6 @@
       <h1>Applications backups</h1>
     </header>
 
-    <%= render 'projects_collapsible_list', locals: { projects: @configured_projects} %>
+    <%= render 'projects_collapsible_list', locals: { projects: @configured_projects, classes: 'projects-list--configured'} %>
   </section>
 <% end %>
