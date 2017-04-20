@@ -8,7 +8,7 @@ class PGBackupsConnector
   end 
 
   def schedule(project,date)
-    response = @cli.execute "#{HEROKU_CMD} schedule DATABASE_URL --at #{date} --app #{project.name}"
+    response = @cli.execute "#{HEROKU_CMD} schedule DATABASE_URL --at '#{date}' --app #{project.name}"
     raise "error while scheduling app #{project.name} with schedule #{date}" if !response.include?('done') 
   end 
   

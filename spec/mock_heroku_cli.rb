@@ -6,7 +6,7 @@ class MockHerokuCli
   def execute(command)
     file = @commands[command]
     puts @commands
-    raise "no mock for '#{command}'" unless file
+    raise "no mock for '#{command}' but we have #{@commands.keys}" unless file
     return fixture_content :heroku, file
   end
 

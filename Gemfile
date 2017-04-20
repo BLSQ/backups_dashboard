@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem 'byebug', platform: :mri
 end
 
@@ -30,11 +31,8 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec'
   gem 'rspec-sidekiq'
   gem 'simplecov', require: false
   gem 'webmock'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

@@ -7,7 +7,10 @@ describe PGBackupsConnector do
   let(:project) {Project.new(name: "app_name", db_connector: :postgresql)}
   
   it "scheduled_at return the date of the schedule for a specific app" do 
-    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedules --app #{project.name}" => "pgbackups_scheduled_at.txt"})
+    mock_heroku_cli = MockHerokuCli.new({
+      "pg:backups schedules --app #{project.name}" => "pgbackups_scheduled_at.txt"
+    })
+
     pg_backups = PGBackupsConnector.new mock_heroku_cli
     expect(pg_backups.scheduled_at(project)).to eq("daily at 7:00 Europe/Brussels")
   end 
@@ -32,14 +35,14 @@ describe PGBackupsConnector do
 
   it "schedule date for a specific app" do
     date = '07:00 Europe/Brussels'
-    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at #{date} --app #{project.name}" => "pgbackups_schedule.txt"})
+    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at '#{date}' --app #{project.name}" => "pgbackups_schedule.txt"})
     pg_backups = PGBackupsConnector.new mock_heroku_cli
     expect{pg_backups.schedule(project,date)}.to_not raise_error(RuntimeError) 
   end 
 
   it "schedule raise error if schedule doesn't work" do
     date = '07:00 Europe/Brussels'
-    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at #{date} --app #{project.name}" => "pgbackups_schedule_error.txt"})
+    mock_heroku_cli = MockHerokuCli.new({"pg:backups schedule DATABASE_URL --at '#{date}' --app #{project.name}" => "pgbackups_schedule_error.txt"})
     pg_backups = PGBackupsConnector.new mock_heroku_cli
     expect{pg_backups.schedule(project,date)}.to raise_error(RuntimeError) 
   end 

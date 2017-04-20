@@ -40,7 +40,7 @@ class ProjectService
     unless @pg_backups.scheduled?(project)
       @pg_backups.schedule(project, '07:00 Europe/Brussels')
     end
-    scheduled_at = @pg_backups.scheduled_at(project)
+    project.update_attributes(frequency: @pg_backups.scheduled_at(project))
   end
 
 end
