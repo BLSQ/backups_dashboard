@@ -14,7 +14,7 @@ class PGBackupsConnector
   
   def scheduled_at(project)
     scheduled_at = @cli.execute "#{HEROKU_CMD} schedules --app #{project.name}"
-    scheduled_at.partition('DATABASE_URL:').last.strip
+    scheduled_at.partition('_URL:').last.strip
   end 
 
   def scheduled?(project)
