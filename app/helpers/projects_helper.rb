@@ -14,6 +14,7 @@ module ProjectsHelper
     line = [project.name]
     line << content_tag(:span, CGI::escapeHTML(project.region), class: 'muted') unless project.region.blank?
     line << content_tag(:span, CGI::escapeHTML(project.domain), class: 'muted') unless project.domain.blank?
+    line << content_tag(:span, CGI::escapeHTML(project.frequency), class: 'muted') unless project.frequency.blank?
     line.join(' — ')
   end
 end
