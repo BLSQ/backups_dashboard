@@ -1,7 +1,8 @@
 
 class ProjectService
   def initialize(cli = HerokuCli.new)
-    @pg_backups = PGBackupsConnector.new(cli)
+    @pg_connector = PGBackupsConnector.new(cli)
+    @ab_connector = AutobusConnector.new(cli)
   end
 
   def configure_apps
@@ -42,19 +43,29 @@ class ProjectService
 
   def configure(project)
     return unless project.postgresql?
-    unless @pg_backups.scheduled?(project)
-      @pg_backups.schedule(project, '07:00 Europe/Brussels')
+    unless @pg_connector.scheduled?(project)
+      @pg_connector.schedule(project, '07:00 Europe/Brussels')
     end
-    project.update_attributes(frequency: @pg_backups.scheduled_at(project))
+    project.update_attributes(frequency: @pg_connector.scheduled_at(project))
   end
 
-  def update_backups(project)
-      heroku_backups = @pg_backups.backups(project)
-      heroku_backups.each do |heroku_backup|
-        backup = project.backups.find_or_create_by(internal_id: heroku_backup['id']) 
-        backup.update_attributes({size: heroku_backup['size'],
-                                  status: heroku_backup['status']})
+  def postgres_backups(project)
+      postgres_backups = @pg_connector.backups(project)
+      postgres_backups.each do |postgres_backup|
+        backup = project.backups.find_or_create_by(internal_id: postgres_backup['id']) 
+        backup.update_attributes({size: postgres_backup['size'],
+                                  status: postgres_backup['status']})
       end 
+  end 
+  
+  def autobus_backups(project)
+      autobus_backups = @ab_connector.backups(project)
+      autobus_backups.each do |autobus_backup|
+        backup = project.backups.find_or_create_by(internal_id: autobus_backup['id']) 
+        backup.update_attributes({size: autobus_backup['size'].to_i.to_filesize,
+                                  status: autobus_backup['test_status'],
+                                  frequency: autobus_backup['kind']})
+      end
   end 
 
 end

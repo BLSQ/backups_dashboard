@@ -47,7 +47,7 @@ describe PGBackupsConnector do
     expect{pg_backups.schedule(project,date)}.to raise_error(RuntimeError) 
   end 
 
-  it "should return list of backups" do 
+  it "should return an array of backups" do 
     expected_backups =  [
           {"id"=>"a165",
            "created_at"=>"2017-04-19 05:29:37 +0000",
