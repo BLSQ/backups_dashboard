@@ -20,6 +20,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
+  gem 'webmock'
 end
 
 group :development do
