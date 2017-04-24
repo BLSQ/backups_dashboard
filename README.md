@@ -1,24 +1,13 @@
-# README
+# Context
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Checking for you that 
 
-Things you may want to cover:
+ - the backups (pg:backups or autobus) for all your applications are enabled 
+ - do a morning check that your backup has run.
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Before opensourcing
+  
+ - change the token of the compromised autobus (see gitlog )
+ - add some env variable for the pg:schedule 
+ - fork the toolbelt build pack and use that one
