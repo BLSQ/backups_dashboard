@@ -1,0 +1,5 @@
+<div class="mini-history">
+  <% locals[:backups].each do |backup| %>
+    <div class="<%= mini_history_bar_classes(backup) %>"></div>
+  <% end %>
+</div>

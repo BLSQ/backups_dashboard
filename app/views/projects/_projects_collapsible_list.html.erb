@@ -2,13 +2,16 @@
   <% locals[:projects].each do |project| %>
     <li>
       <div class="collapsible-header">
-        <i class="material-icons material-icons--success">done</i>
+        <% if project.backups.any?%>
+          <i class="<%= status_icon_color_class(project.backups.last.status) %> material-icons"><%= backup_status_icon_name(project.backups.last) %></i>
+        <% end %>
         <%= db_icon(project.db_connector) %>
         <%= project_line_item(project).html_safe %>
+        <%= render 'shared/mini_history', locals: { backups: project.backups.last(5).reverse } %>
         <%= link_to 'EDIT CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
       </div>
       <div class="collapsible-body">
-        <%= render 'backups/backups_list', locals: {backups: project.backups} %>
+        <%= render 'backups/backups_list', locals: {backups: project.backups.last(5).reverse} %>
       </div>
     </li>
   <% end %>

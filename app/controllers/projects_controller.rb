@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @missing_config_projects = Project.missing_config
-    @configured_projects = Project.configured
+    @configured_projects = Project.includes(:backups).configured
   end
 
   # GET /projects/1

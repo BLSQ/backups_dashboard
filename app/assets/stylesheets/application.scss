@@ -83,5 +83,24 @@ section {
 }
 
 .muted {
-  opacity: .7;  
+  opacity: .7;
 }
+
+.mini-history {
+  display: inline-block;
+  margin-left: 20px;
+  opacity: .8;
+  position: relative;
+  top: 3px;
+}
+
+.mini-history__bar {
+  width: 3px;
+  height: 1em;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.mini-history__bar--completed { background: green;}
+.mini-history__bar--failed { background: red;}
+.mini-history__bar--pending { background: gray;}

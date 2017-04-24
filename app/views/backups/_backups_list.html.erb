@@ -2,12 +2,8 @@
   <% locals[:backups].each do |backup| %>
     <li class="collection-item">
       <div class="collection-item__body">
-        <i class="material-icons material-icons--success">done</i>
+        <i class="material-icons <%= status_icon_color_class(backup.status) %>"><%= backup_status_icon_name(backup) %></i>
         <%= backup_line_item(backup).html_safe %>
-        <a href="#!" class="secondary-content">
-          <i class="material-icons"></i>
-          LOG
-        </a>
       </div>
     </li>
   <% end %>
