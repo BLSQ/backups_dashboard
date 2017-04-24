@@ -5,19 +5,28 @@ class ProjectService
     @ab_connector = AutobusConnector.new(cli)
   end
 
-  def configure_apps
+  def update_all 
     heroku = PlatformAPI.connect_oauth(ENV['HEROKU_TOOLBELT_API_PASSWORD'])
     heroku.app.list.each do |app|
       begin
         project = Project.find_or_create_by(name: app['name'])
         update_project(project, app)
-        configure(project)
-        update_backups(project)
+        schedule(project)
       rescue => e 
         puts "error while configuring #{app['name']} : #{e.message} #{e.backtrace.join('\n')}"
       end 
     end
   end
+
+  def update_all_backups
+    Project.all.each do |project|
+      begin
+        update_backup(project)
+      rescue => e 
+        puts "error while retrieving backups for #{project['name']} : #{e.message} #{e.backtrace.join('\n')}"
+      end 
+    end
+  end 
 
   def type(app)
     response = RestClient.get("https://api.heroku.com/apps/#{app['name']}/addons", headers = {})
@@ -41,7 +50,7 @@ class ProjectService
       db_connector: type(app)})
   end
 
-  def configure(project)
+  def schedule(project)
     return unless project.postgresql?
     unless @pg_connector.scheduled?(project)
       @pg_connector.schedule(project, '07:00 Europe/Brussels')
@@ -49,23 +58,16 @@ class ProjectService
     project.update_attributes(frequency: @pg_connector.scheduled_at(project))
   end
 
-  def postgres_backups(project)
-      postgres_backups = @pg_connector.backups(project)
-      postgres_backups.each do |postgres_backup|
-        backup = project.backups.find_or_create_by(internal_id: postgres_backup['id']) 
-        backup.update_attributes({size: postgres_backup['size'],
-                                  status: postgres_backup['status']})
-      end 
-  end 
-  
-  def autobus_backups(project)
-      autobus_backups = @ab_connector.backups(project)
-      autobus_backups.each do |autobus_backup|
-        backup = project.backups.find_or_create_by(internal_id: autobus_backup['id']) 
-        backup.update_attributes({size: autobus_backup['size'].to_i.to_filesize,
-                                  status: autobus_backup['test_status'],
-                                  frequency: autobus_backup['kind']})
-      end
-  end 
 
+  def update_backups(project)
+    connector_backups = project.postgresql? ? @pg_connector.backups(project)
+                                            : @ab_connector.backups(project) 
+
+    connector_backups.each do |connector_backup|
+      backup = project.backups.find_or_create_by(internal_id: connector_backup['internal_id']) 
+      backup.update_attributes({size: connector_backup['size'],
+                                status: connector_backup['status'],
+                                frequency: connector_backup['frequency']})
+    end
+  end 
 end

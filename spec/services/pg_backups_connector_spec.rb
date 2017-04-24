@@ -48,27 +48,28 @@ describe PGBackupsConnector do
   end 
 
   it "should return an array of backups" do 
+
     expected_backups =  [
-          {"id"=>"a165",
-           "created_at"=>"2017-04-19 05:29:37 +0000",
-           "status"=>"Completed 2017-04-19 05:36:12 +0000",
-           "size"=>"4.87MB",
-           "database"=>"DATABASE"},
-          {"id"=>"b116",
-           "created_at"=>"2017-03-01 13:58:19 +0000",
-           "status"=>"Completed 2017-03-01 14:04:54 +0000",
-           "size"=>"4.47MB",
-           "database"=>"DATABASE"},
-          {"id"=>"b074",
-           "created_at"=>"2017-01-19 07:20:28 +0000",
-           "status"=>"Failed 2017-01-19 07:20:30 +0000",
-           "size"=>"",
-           "database"=>" 0.00B"},
-          {"id"=>"b070",
-           "created_at"=>"2017-01-18 07:38:30 +0000",
-           "status"=>"Failed 2017-01-18 07:38:32 +0000",
-           "size"=>"",
-           "database"=>" 0.00B"}]
+          {internal_id: "a165",
+           created_at: "2017-04-19 05:29:37 +0000",
+           status: :completed,
+           frequency: "",
+           size: "4.87MB"},
+          {internal_id: "b116",
+           created_at: "2017-03-01 13:58:19 +0000",
+           status: :completed,
+           frequency: "",
+           size: "4.47MB"},
+          {internal_id: "b074",
+           created_at: "2017-01-19 07:20:28 +0000",
+           status: :failed,
+           frequency: "",
+           size: "0.00B"},
+          {internal_id: "b070",
+           created_at: "2017-01-18 07:38:30 +0000",
+           status: :failed,
+           frequency: "",
+           size: "0.00B"}]
 
     mock_heroku_cli = MockHerokuCli.new({"pg:backups --app #{project.name}" => "pgbackups_backup_list.txt"})
     pg_backups = PGBackupsConnector.new mock_heroku_cli
