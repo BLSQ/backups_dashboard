@@ -3,6 +3,7 @@ class ProjectsUpdateWorker
 
   def perform
     service = ProjectService.new 
-    service.configure_apps
+    service.update_all
+    service.update_all_backups
   end
 end

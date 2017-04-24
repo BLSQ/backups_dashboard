@@ -21,7 +21,7 @@ class ProjectService
   def update_all_backups
     Project.all.each do |project|
       begin
-        update_backup(project)
+        update_backups(project)
       rescue => e 
         puts "error while retrieving backups for #{project['name']} : #{e.message} #{e.backtrace.join('\n')}"
       end 
@@ -64,10 +64,10 @@ class ProjectService
                                             : @ab_connector.backups(project) 
 
     connector_backups.each do |connector_backup|
-      backup = project.backups.find_or_create_by(internal_id: connector_backup['internal_id']) 
-      backup.update_attributes({size: connector_backup['size'],
-                                status: connector_backup['status'],
-                                frequency: connector_backup['frequency']})
+      backup = project.backups.find_or_create_by(internal_id: connector_backup[:internal_id]) 
+      backup.update_attributes({size: connector_backup[:size],
+                                status: connector_backup[:status],
+                                frequency: connector_backup[:frequency]})
     end
   end 
 end
