@@ -3,15 +3,15 @@
     <li>
       <div class="collapsible-header">
         <% if project.backups.any?%>
-          <i class="<%= status_icon_color_class(project.backups.last.status) %> material-icons"><%= backup_status_icon_name(project.backups.last) %></i>
+          <i class="<%= project_status_icon_color_class(project.backups.sort_by(&:created_at).last) %> material-icons"><%= project_status_icon_name(project.backups.sort_by(&:created_at).last) %></i>
         <% end %>
         <%= db_icon(project.db_connector) %>
         <%= project_line_item(project).html_safe %>
-        <%= render 'shared/mini_history', locals: { backups: project.backups.last(5).reverse } %>
+        <%= render 'shared/mini_history', locals: { backups: project.backups.sort_by(&:created_at).last(5)} %>
         <%= link_to 'EDIT CONFIG', edit_project_path(project), class: 'projects-list__item__action' %>
       </div>
       <div class="collapsible-body">
-        <%= render 'backups/backups_list', locals: {backups: project.backups.last(5).reverse} %>
+        <%= render 'backups/backups_list', locals: {backups: project.backups.sort_by(&:created_at).last(5)} %>
       </div>
     </li>
   <% end %>

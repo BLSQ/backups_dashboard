@@ -27,4 +27,18 @@ module BackupsHelper
       'cached'
     end
   end
+
+  def project_status_icon_name(backup)
+    if backup.backuped_at.today?
+        return backup_status_icon_name(backup)
+    end 
+    'highlight_off'
+  end 
+
+  def project_status_icon_color_class(backup)
+    if backup.backuped_at.today?
+        return status_icon_color_class(backup.status)
+    end 
+    'material-icons--error'
+  end 
 end
