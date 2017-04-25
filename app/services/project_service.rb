@@ -53,7 +53,7 @@ class ProjectService
   def schedule(project)
     return unless project.postgresql?
     unless @pg_connector.scheduled?(project)
-      @pg_connector.schedule(project, '07:00 Europe/Brussels')
+      @pg_connector.schedule(project, ENV['backups_frequency'])
     end
     project.update_attributes(frequency: @pg_connector.scheduled_at(project))
   end
