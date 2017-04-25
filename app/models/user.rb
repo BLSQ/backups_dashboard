@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   def self.from_omniauth(auth)
-    return nil unless auth[:extra][:raw_info][:hd] == 'bluesquarehub.com'
+    return nil unless auth[:extra][:raw_info][:hd] == ENV['google_domain']
 
     where(provider: auth[:provider], uid: auth[:uid]).first_or_initialize.tap do |user|
       user.provider = auth[:provider]

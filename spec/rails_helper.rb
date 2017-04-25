@@ -24,6 +24,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  ENV['google_domain'] = 'bluesquarehub.com'
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = {
     uid: '1',
@@ -33,7 +34,7 @@ RSpec.configure do |config|
     },
     extra: {
       raw_info: {
-        hd: 'bluesquarehub.com'
+        hd: ENV['google_domain']
       }
     },
     credentials: {

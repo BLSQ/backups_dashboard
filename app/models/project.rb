@@ -20,4 +20,11 @@ class Project < ApplicationRecord
   def last_backup
     last_five_backups.first
   end 
+
+  def priority 
+    return 1 if last_backup && 
+                last_backup.backuped_at.today? && 
+                last_backup.status == 'completed'
+    0
+  end 
 end

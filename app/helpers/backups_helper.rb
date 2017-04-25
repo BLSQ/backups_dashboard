@@ -29,6 +29,7 @@ module BackupsHelper
   end
 
   def project_status_icon_name(backup)
+    return 'highlight_off' unless backup
     if backup.backuped_at.today?
         return backup_status_icon_name(backup)
     end 
@@ -36,6 +37,7 @@ module BackupsHelper
   end 
 
   def project_status_icon_color_class(backup)
+    return 'material-icons--error' unless backup
     if backup.backuped_at.today?
         return status_icon_color_class(backup.status)
     end 

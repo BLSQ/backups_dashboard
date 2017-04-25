@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @missing_config_projects = Project.missing_config
-    @configured_projects = Project.includes(:backups).configured
+    @configured_projects = Project.includes(:backups).configured.
+      sort {|a,b| [a.priority,a.name] <=> [b.priority,b.name]}
   end
 
   # GET /projects/1
