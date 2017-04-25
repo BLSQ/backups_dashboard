@@ -12,4 +12,12 @@ class Project < ApplicationRecord
   def configured?
     postgresql? ? frequency? : autobus_token? && frequency? 
   end
+
+  def last_five_backups
+    backups.sort_by(&:created_at).last(5)
+  end 
+
+  def last_backup
+    last_five_backups.first
+  end 
 end
