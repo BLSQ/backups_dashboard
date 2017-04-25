@@ -37,6 +37,7 @@ class PGBackupsConnector
      created_at: backup["created_at"],
      status: status_mapping[backup["status"].split(" ")[0]],
      frequency: "",
+     backuped_at: backup['created_at'],
      size: backup["size"]}
   end 
 end 

@@ -3,6 +3,7 @@ module BackupsHelper
     line = [('#' + backup.id.to_s)]
     line << content_tag(:span, CGI::escapeHTML(backup.status), class: 'muted') unless backup.status.blank?
     line << content_tag(:span, CGI::escapeHTML(backup.size), class: 'muted') unless backup.size.blank?
+    line << content_tag(:span, CGI::escapeHTML(backup.backuped_at.to_s), class: 'muted') unless backup.backuped_at.blank?
     line.join(' — ')
   end
 
