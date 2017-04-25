@@ -7,9 +7,9 @@ module BackupsHelper
   end
 
   def backup_status(status)
-    if status.match('Completed')
+    if status.match('completed')
       'completed'
-    elsif status.match('Failed')
+    elsif status.match('failed')
       'failed'
     else
       'pending'
