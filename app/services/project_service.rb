@@ -67,7 +67,7 @@ class ProjectService
       backup = project.backups.find_or_create_by(internal_id: connector_backup[:internal_id]) 
       backup.update_attributes({size: connector_backup[:size],
                                 status: connector_backup[:status],
-                                backuped_at: connector_backup[:backuped_at],
+                                backuped_at: connector_backup[:created_at],
                                 frequency: connector_backup[:frequency]})
     end
   end 
