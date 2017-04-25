@@ -14,7 +14,7 @@ class Project < ApplicationRecord
   end
 
   def last_five_backups
-    backups.sort_by(&:created_at).last(5)
+    backups.sort_by(&:backuped_at).last(5).reverse
   end 
 
   def last_backup
