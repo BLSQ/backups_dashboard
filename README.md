@@ -20,6 +20,8 @@ It uses google for authentication.
 	
 	- heroku create dashboard_backups
 	- heroku addons:create heroku-postgresql:hobby-basic --app dashboard_backups
+	- heroku addons:create rediscloud:30 --app scorpio-dev
+	- heroku ps:scale web=1 worker=1
 	- heroku buildpacks:set https://github.com/gregburek/heroku-buildpack-toolbelt.git
 	- git clone repo_url dashboard_backups
 	- cd dashboard_backups
@@ -57,3 +59,19 @@ Using a sidekick worker dashboard backups will connect to autobus and
   - retrieve the list of backups per app 
 
 To enable the connection to autobus, the user will have to manually setup the autobus token per application in dashboard backups. The list of applications to configure will be listed on top of the home page as 'missing configuration' applications. 
+
+
+## Testing 
+
+To test that all connection works use the following command 
+
+	- heroku run rake projects:update 
+
+This will populate the database with all heroku application and backups information available 
+
+## Schedule 
+
+To schedule the task, use 
+
+	- heroku addons:create scheduler:standard
+	- heroku addons:open scheduler 
