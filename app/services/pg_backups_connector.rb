@@ -3,7 +3,8 @@ class PGBackupsConnector
   HEROKU_CMD = "pg:backups".freeze
   STATUS_MAPPING = {
     "Completed" => :completed,
-    "Failed"    => :failed
+    "Failed"    => :failed,
+    "Pending" => :pending
   }.freeze
 
   def initialize(cli = HerokuCli.new)
@@ -39,7 +40,7 @@ class PGBackupsConnector
     {
       internal_id: backup["id"],
       created_at:  backup["created_at"],
-      status:      STATUS_MAPPING[backup["status"].split(" ")[0]],
+      status:      STATUS_MAPPING[backup["status"].split(" ")[0]] || 'unknown',
       frequency:   "",
       size:        backup["size"]
     }

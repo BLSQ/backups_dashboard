@@ -24,7 +24,7 @@ class AutobusConnector
     {
       internal_id: raw_api_backup["id"],
       created_at:  raw_api_backup["created_at"],
-      status:      STATUS_MAPPING[raw_api_backup["test_status"]],
+      status:      STATUS_MAPPING[raw_api_backup["test_status"]] || 'unknown',
       frequency:   raw_api_backup["kind"],
       size:        Filesize.from("#{raw_api_backup['size']} B").pretty
     }
