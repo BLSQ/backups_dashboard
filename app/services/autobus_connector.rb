@@ -25,7 +25,7 @@ class AutobusConnector
     status_mapping = {"Pass" => :completed, "Failed" => :failed}
     {internal_id: raw_api_backup["id"],
      created_at: raw_api_backup["created_at"],
-     status: status_mapping[raw_api_backup["test_status"]],
+     status: status_mapping[raw_api_backup["test_status"]] || 'unknown',
      frequency: raw_api_backup["kind"],
      size: Filesize.from("#{raw_api_backup["size"]} B").pretty}
   end 

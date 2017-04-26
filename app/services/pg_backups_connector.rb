@@ -32,10 +32,10 @@ class PGBackupsConnector
 
   def create_backup(raw_api_backup)
     backup = Hash[['id','created_at','status','size'].zip(raw_api_backup.split(/\s{2,}/))]
-    status_mapping = {"Completed" => :completed, "Failed" => :failed}
+    status_mapping = {"Completed" => :completed, "Failed" => :failed, "Pending" => :pending}
     {internal_id: backup["id"],
      created_at: backup["created_at"],
-     status: status_mapping[backup["status"].split(" ")[0]],
+     status: status_mapping[backup["status"].split(" ")[0]] || 'unknown',
      frequency: "",
      size: backup["size"]}
   end 
