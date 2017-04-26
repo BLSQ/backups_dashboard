@@ -2,9 +2,24 @@
 
 ## Context
 
+We built this do answer two too common questions:
+
+- Do we have backups on every application? 
+- Did they run properly last night/week?
+
+With both Posgresql and Mysql based applications, it means either scheduling backups (PG) or setuping [autobus](https://devcenter.heroku.com/articles/autobus) ([ClearDB](https://devcenter.heroku.com/articles/cleardb) or [JawsDB](https://devcenter.heroku.com/articles/jawsdb) MySQL add ons) and then be sure that it was effectively working each night.
+
+This application is the result of a colleague tired to check them every morning.
+
+## What is does
+
+![Dashboard](https://s3-eu-west-1.amazonaws.com/blsq-io/Selection_041.png)
+
+
 Dasboard backups is a flexible backup monitoring solution for heroku applications. It
  
   - automatically schedule backups on new heroku application
+  - warn you for any application with no backup configured
   - provide a helpful summary of the current state of the backups (per app)
 
 Currently the following backup systems:  
