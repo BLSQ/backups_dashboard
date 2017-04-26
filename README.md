@@ -17,15 +17,15 @@ It uses google for authentication.
 ## Installation on Heroku
 
 ### Basic Setup
-	
-	- heroku create dashboard_backups
-	- heroku addons:create heroku-postgresql:hobby-basic --app dashboard_backups
-	- heroku addons:create rediscloud:30 --app scorpio-dev
+	- export APP=backups_dashboard
+	- heroku create $APP 
+	- heroku addons:create heroku-postgresql:hobby-basic --app $APP
+	- heroku addons:create rediscloud:30 --app $APP
 	- heroku ps:scale web=1 worker=1
 	- heroku buildpacks:set https://github.com/BLSQ/heroku-buildpack-toolbelt.git
-	- git clone repo_url dashboard_backups
+	- git clone repo_url $APP
 	- cd dashboard_backups
-	- heroku git:remote -a dashboard_backups
+	- heroku git:remote --app $APP
 	- git push heroku master
 	- heroku run rake db:migrate
 
